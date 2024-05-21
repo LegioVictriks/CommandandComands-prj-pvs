@@ -1,0 +1,74 @@
+// UserController.java
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+@RequestMapping("/api")
+public class UserController {
+
+    @Autowired
+    private UserService userService;
+
+    @PostMapping("/register")
+    public ResponseEntity<?> registerUser(@RequestBody UserDto userDto) {
+        // Реализуйте логику регистрации пользователя
+        // boolean isRegistered = userService.registerUser(userDto);
+        // if (isRegistered) {
+        //     return ResponseEntity.status(201).body("User registered successfully");
+        // } else {
+        //     return ResponseEntity.status(400).body("Registration failed");
+        // }
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<?> loginUser(@RequestBody UserDto userDto) {
+        // Реализуйте логику авторизации пользователя
+        // boolean isAuthenticated = userService.authenticateUser(userDto);
+        // if (isAuthenticated) {
+        //     return ResponseEntity.ok("Login successful");
+        // } else {
+        //     return ResponseEntity.status(401).body("Invalid credentials");
+        // }
+    }
+
+    @GetMapping("/employees")
+    public ResponseEntity<List<UserDto>> getAllUsers() {
+        // Реализуйте логику получения списка пользователей
+        // List<UserDto> users = userService.getAllUsers();
+        // return ResponseEntity.ok(users);
+    }
+}
+// UserDto.java
+public class UserDto {
+    private String email;
+    private String password;
+
+    // Getters and Setters
+}
+// UserService.java
+import org.springframework.stereotype.Service;
+
+@Service
+public class UserService {
+
+    // Здесь должен быть ваш репозиторий пользователей
+
+    public boolean registerUser(UserDto userDto) {
+        // Реализуйте логику регистрации пользователя
+        // Например, сохранение пользователя в базе данных
+        // return true; // Возвращайте true, если регистрация успешна
+    }
+
+    public boolean authenticateUser(UserDto userDto) {
+        // Реализуйте логику авторизации пользователя
+        // Например, проверка учетных данных в базе данных
+        // return true; // Возвращайте true, если авторизация успешна
+    }
+
+    public List<UserDto> getAllUsers() {
+        // Реализуйте логику получения всех пользователей
+        // Например, получение списка пользователей из базы данных
+        // return users;
+    }
+}

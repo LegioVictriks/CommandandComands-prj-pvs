@@ -43,6 +43,13 @@ const LoginForm = ({ onLogin }) => {
     // Handle login logic
     onLogin(email);
   };
+   // Здесь добавить axios для авторизации
+      // const response = await axios.post('http://localhost:8080/api/login', { email, password });
+      // if (response.status === 200) {
+      //   onLogin(email);
+      // } else {
+      //   alert('Login failed');
+      // }
 
   return (
     <form onSubmit={handleLogin}>
@@ -60,6 +67,13 @@ const SignUpForm = ({ onSignUp }) => {
     // Handle signup logic
     onSignUp(email);
   };
+  // Здесь добавить axios для регистрации
+      // const response = await axios.post('http://localhost:8080/api/register', { email, password });
+      // if (response.status === 201) {
+      //   onSignUp(email);
+      // } else {
+      //   alert('Registration failed');
+      // }
 
   return (
     <form onSubmit={handleSignUp}>
@@ -93,6 +107,18 @@ const Headers = () => {
       history.push('/');
     }
   };
+    // получения списка пользователей
+  // useEffect(() => {
+  //   const fetchUsers = async () => {
+  //     try {
+  //       const response = await axios.get('http://localhost:8080/api/employees');
+  //       console.log(response.data);
+  //     } catch (error) {
+  //       console.error('Error fetching users:', error);
+  //     }
+  //   };
+  //   fetchUsers();
+  // }, []);
 
   return (
     <Router>
