@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom';
+import { BrowserRouter as Router, Route, NavLink, Redirect, useHistory } from 'react-router-dom';
 import Taskss from './Headers/Tasks.jsx';
 import TaskApp from './Headers/Projects.jsx';
 import NewComponent from './Headers/Home.jsx';
@@ -39,15 +39,16 @@ const Main = () => (
 const LoginForm = ({ onLogin }) => {
   const handleLogin = (e) => {
     e.preventDefault();
+    const email = e.target.elements.email.value;
     // Handle login logic
-    onLogin();
+    onLogin(email);
   };
 
   return (
     <form onSubmit={handleLogin}>
-      <input type="text" placeholder="User or Email" required />
+      <input type="email" name="email" placeholder="Email" required />
       <input type="password" placeholder="Password" required />
-      <button type="submit">Sign In</button>
+      <button type="submit">Login</button>
     </form>
   );
 };
@@ -55,70 +56,85 @@ const LoginForm = ({ onLogin }) => {
 const SignUpForm = ({ onSignUp }) => {
   const handleSignUp = (e) => {
     e.preventDefault();
+    const email = e.target.elements.email.value;
     // Handle signup logic
-    onSignUp();
+    onSignUp(email);
   };
 
   return (
     <form onSubmit={handleSignUp}>
-      <input type="text" placeholder="User or Email" required />
+      <input type="email" name="email" placeholder="Email" required />
       <input type="password" placeholder="Password" required />
-      <button type="submit">Sign Up</button>
+      <input type="password" placeholder="Confirm Password" required />
+      <button type="submit">Register</button>
     </form>
   );
 };
 
 const Headers = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [showLogin, setShowLogin] = useState(true);
+  const [userEmail, setUserEmail] = useState('');
+  const [showLogin, setShowLogin] = useState(false);
+  const [showSignUp, setShowSignUp] = useState(false);
+  const history = useHistory();
 
-  const handleLogin = () => {
+  const handleLogin = (email) => {
     setIsAuthenticated(true);
+    setUserEmail(email);
+    setShowLogin(false);
+    setShowSignUp(false);
+    history.push(`/${email}`);
   };
 
   const handleLogout = () => {
-    setIsAuthenticated(false);
+    if (window.confirm("Do you want to leave this site?")) {
+      setIsAuthenticated(false);
+      setUserEmail('');
+      history.push('/');
+    }
   };
 
   return (
     <Router>
       <div className="navbar">
-        <NavLink to="/" className="main-button">Main</NavLink>
-        <div className="auth-buttons">
-          {isAuthenticated ? (
-            <>
-              <div className='navlink'>
-                <NavLink to="/home" activeClassName="active">Home</NavLink>
-                <NavLink to="/projects" activeClassName="active">Projects</NavLink>
-                <NavLink to="/progress" activeClassName="active">Progress</NavLink>
-              </div>
-              <div className='flexdiv'>
-                <div className='emailcss'><EmailShortener email="exampler@mail.com" /></div>
-                <div className='loginc' onClick={handleLogout}>Logout</div>
-              </div>
-            </>
-          ) : (
-            <>
-              <button onClick={() => setShowLogin(true)}>Log In</button>
-              <button onClick={() => setShowLogin(false)}>Sign Up</button>
-            </>
-          )}
-        </div>
+        {isAuthenticated ? (
+          <>
+            <div className='navlink'>
+              <NavLink to="/home" activeClassName="active">Home</NavLink>
+              <NavLink to="/projects" activeClassName="active">Projects</NavLink>
+              <NavLink to="/progress" activeClassName="active">Progress</NavLink>
+            </div>
+            <div className='flexdiv'>
+              <div className='emailcss'><EmailShortener email={userEmail} /></div>
+              <div className='loginc' onClick={handleLogout}>Logout</div>
+            </div>
+          </>
+        ) : (
+          <>
+            <NavLink to="/" className="main-button">Main</NavLink>
+            <div className="auth-buttons">
+              <button onClick={() => { setShowLogin(true); setShowSignUp(false); }}>Log In</button>
+              <button onClick={() => { setShowLogin(false); setShowSignUp(true); }}>Register</button>
+            </div>
+          </>
+        )}
       </div>
 
-      {isAuthenticated ? (
+      <Route exact path="/" component={Main} />
+
+      {!isAuthenticated && showLogin && <LoginForm onLogin={handleLogin} />}
+      {!isAuthenticated && showSignUp && <SignUpForm onSignUp={handleLogin} />}
+
+      {isAuthenticated && (
         <>
           <Route path="/home" component={NewComponent} />
           <Route path="/projects" component={TaskApp} />
           <Route path="/progress" component={Taskss} />
+          <Route path={`/${userEmail}`} render={() => (
+            <Redirect to="/home" />
+          )} />
         </>
-      ) : (
-        <div className="auth-form">
-          {showLogin ? <LoginForm onLogin={handleLogin} /> : <SignUpForm onSignUp={handleLogin} />}
-        </div>
       )}
-
-      <Route exact path="/" component={Main} />
     </Router>
   );
 };
