@@ -30,4 +30,7 @@ public class Task {
      private LocalDate CreationDate ;
     @Column(name= "Last-Updaete" )
     private LocalDate LastUpdated;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 }
