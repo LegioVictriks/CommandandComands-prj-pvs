@@ -12,7 +12,7 @@ import java.util.List;
 @Slf4j
 @CrossOrigin("*")
 @RestController
-@RequestMapping("/api/employees")
+@RequestMapping("/api/useremail/employees")
 public class TaskConroller {
     private TaskService taskService;
 
@@ -32,24 +32,25 @@ public class TaskConroller {
         TaskDto taskDto = taskService.getTaskById(taskId);
         return ResponseEntity.ok(taskDto);
     }
-@GetMapping
+
+    @GetMapping
     public  ResponseEntity<List<TaskDto>> getAllTask(){
 
        List<TaskDto>  task =taskService.getAllTask();
     log.info("Get: {}", task);
 return ResponseEntity.ok(task);
     }
-@PutMapping("{id}")
-public ResponseEntity<TaskDto> updateTask(@PathVariable("id") Long taskId,
-                                          @RequestBody TaskDto updateTask) {
-    TaskDto taskDto = taskService.updateTask(taskId, updateTask);
-    return ResponseEntity.ok(taskDto);
 
+    @PutMapping("{id}")
+    public ResponseEntity<TaskDto> updateTask(@PathVariable("id") Long taskId,
+                                              @RequestBody TaskDto updateTask) {
+        TaskDto taskDto = taskService.updateTask(taskId, updateTask);
+        return ResponseEntity.ok(taskDto);
     }
-@DeleteMapping("{id}")
+
+    @DeleteMapping("{id}")
     public  ResponseEntity <String> deleteTask(@PathVariable("id") Long TaskId ){
 taskService.deleteTask(TaskId);
 return ResponseEntity.ok("Task delete successfully ");
     };
-
 }
