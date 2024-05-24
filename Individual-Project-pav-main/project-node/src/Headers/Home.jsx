@@ -57,12 +57,12 @@ const Homepage = () => {
             <h2>Task Name: {latestTask.name}</h2>
             <p>Status: {latestTask.status}</p>
             <h3>Description:<p>{latestTask.description}</p></h3>
-            <NavLink to={`/projects/${latestTask.id}`} className='details-link'>
+            <NavLink to={`/Projects/${latestTask.id}`} className='details-link'>
               More Details
             </NavLink>
           </div>
         ) : (
-          <p className='task-description'>Today nothing;)</p>
+          <p className='task-description'>Today nothing;</p>
         )}
       </div>
     </div>

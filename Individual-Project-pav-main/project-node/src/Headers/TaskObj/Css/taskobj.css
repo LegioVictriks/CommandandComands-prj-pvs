@@ -5,7 +5,7 @@
     margin-bottom: 10px;
 }
 .obj-container h4{
-    background-color: #b195ff;
+    background-color: #000000;
     width: 350px;
     height: auto;
     padding-left: 4px;
@@ -42,9 +42,9 @@
     border-radius: 3px;
     transition: background-color 0.2s;
     border: 0;
-    color: #3C257C;
+    color: #000000;
 }
 .details-link:hover {
-    background-color: #3C257C;
+    background-color: #000000;
     color: #FFFFFF;
   }

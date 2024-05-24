@@ -3,7 +3,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
-    background-color: #AD92FB;
+    background-color: #000000;
   }
   
   .navbar a {
@@ -16,8 +16,7 @@
   }
   
   .navbar a.active {
-    background-color: #ffffff;
-    color: #6a0dad;
+    color: #ffffff;
     padding: 5px 10px;
   }
   
@@ -51,6 +50,25 @@
   justify-content: center;
   color: #ffffff;
   border-radius: 5px;
-  background-color: #851dcf;
+  background-color: #000000;
 
+}
+.navbar {
+  background: url('../assets/background.png')
+}
+.black-btr{
+  border-radius: 5px;
+  background-color: #ffffff;
+
+}
+.loginc{
+
+border-color: #ffffff;
+
+color: #ffffff;
+}
+.loginc:hover {
+  transition: background-color 0.2s, color 0.2s;
+  background-color: #b1b0b0; /* цвет при наведении */
+  color: #000000;
 }

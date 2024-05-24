@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, NavLink, Redirect, useHistory } from 'r
 import Taskss from './Headers/Tasks.jsx';
 import TaskApp from './Headers/Projects.jsx';
 import NewComponent from './Headers/Home.jsx';
-import Calendar from './Calendar.jsx'; // Assuming you have a Calendar component
+import Calendar from './Calendar.jsx';
 import './Css/Headers.css';
 
 const EmailShortener = ({ email }) => {
@@ -30,7 +30,7 @@ const EmailShortener = ({ email }) => {
 const Main = () => (
   <div className="main-page">
     <div className="content">
-      <img src="/assets/image.png" alt="Some Image" />
+
       <Calendar />
     </div>
   </div>
@@ -43,20 +43,15 @@ const LoginForm = ({ onLogin }) => {
     // Handle login logic
     onLogin(email);
   };
-   // Здесь добавить axios для авторизации
-      // const response = await axios.post('http://localhost:8080/api/login', { email, password });
-      // if (response.status === 200) {
-      //   onLogin(email);
-      // } else {
-      //   alert('Login failed');
-      // }
 
   return (
-    <form onSubmit={handleLogin}>
-      <input type="email" name="email" placeholder="Email" required />
-      <input type="password" placeholder="Password" required />
-      <button type="submit">Login</button>
-    </form>
+    <div className="form-container">
+      <form onSubmit={handleLogin}>
+        <input type="email" name="email" placeholder="Email" required />
+        <input type="password" placeholder="Password" required />
+        <button type="submit">Login</button>
+      </form>
+    </div>
   );
 };
 
@@ -67,21 +62,16 @@ const SignUpForm = ({ onSignUp }) => {
     // Handle signup logic
     onSignUp(email);
   };
-  // Здесь добавить axios для регистрации
-      // const response = await axios.post('http://localhost:8080/api/register', { email, password });
-      // if (response.status === 201) {
-      //   onSignUp(email);
-      // } else {
-      //   alert('Registration failed');
-      // }
 
   return (
-    <form onSubmit={handleSignUp}>
-      <input type="email" name="email" placeholder="Email" required />
-      <input type="password" placeholder="Password" required />
-      <input type="password" placeholder="Confirm Password" required />
-      <button type="submit">Register</button>
-    </form>
+    <div className="form-container">
+      <form onSubmit={handleSignUp}>
+        <input type="email" name="email" placeholder="Email" required />
+        <input type="password" placeholder="Password" required />
+        <input type="password" placeholder="Confirm Password" required />
+        <button type="submit">Register</button>
+      </form>
+    </div>
   );
 };
 
@@ -107,18 +97,6 @@ const Headers = () => {
       history.push('/');
     }
   };
-    // получения списка пользователей
-  // useEffect(() => {
-  //   const fetchUsers = async () => {
-  //     try {
-  //       const response = await axios.get('http://localhost:8080/api/employees');
-  //       console.log(response.data);
-  //     } catch (error) {
-  //       console.error('Error fetching users:', error);
-  //     }
-  //   };
-  //   fetchUsers();
-  // }, []);
 
   return (
     <Router>
@@ -127,7 +105,7 @@ const Headers = () => {
           <>
             <div className='navlink'>
               <NavLink to="/home" activeClassName="active">Home</NavLink>
-              <NavLink to="/projects" activeClassName="active">Projects</NavLink>
+              <NavLink to="/projects" activeClassName="active">Task</NavLink>
               <NavLink to="/progress" activeClassName="active">Progress</NavLink>
             </div>
             <div className='flexdiv'>
@@ -139,8 +117,8 @@ const Headers = () => {
           <>
             <NavLink to="/" className="main-button">Main</NavLink>
             <div className="auth-buttons">
-              <button onClick={() => { setShowLogin(true); setShowSignUp(false); }}>Log In</button>
-              <button onClick={() => { setShowLogin(false); setShowSignUp(true); }}>Register</button>
+              <button className='black-btr' onClick={() => { setShowLogin(true); setShowSignUp(false); }}>Log In</button>
+              <button className='black-btr' onClick={() => { setShowLogin(false); setShowSignUp(true); }}>Register</button>
             </div>
           </>
         )}

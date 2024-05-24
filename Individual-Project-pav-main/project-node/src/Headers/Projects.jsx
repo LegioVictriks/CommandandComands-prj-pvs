@@ -4,7 +4,7 @@ import Task from './TaskObj/Task';
 import TaskDetails from './TaskObj/TaskDetails';
 import '../Css/Project.css';
 import axios from 'axios';
-
+ 
 const TaskApp = () => {
   const [tasks, setTasks] = useState([]);
   const [newTask, setNewTask] = useState({
@@ -17,7 +17,7 @@ const TaskApp = () => {
   const [addButtonText, setAddButtonText] = useState('Add new task');
   const [editingTask, setEditingTask] = useState(false);
   const [formClass, setFormClass] = useState('task-form');
-
+ 
   useEffect(() => {
     axios.get('http://localhost:8080/api/employees')
       .then((response) => {
@@ -28,22 +28,12 @@ const TaskApp = () => {
         console.error(error);
       });
   }, []);
-
+ 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setNewTask({ ...newTask, [name]: value });
   };
-
-  // const handlePriorityChange = () => {
-  //   const priorities = ['Low', 'Medium', 'High'];
-  //   const currentIndex = priorities.indexOf(newTask.priority);
-  //   const nextIndex = (currentIndex + 1) % priorities.length;
-  //   setNewTask({
-  //     ...newTask,
-  //     priority: priorities[nextIndex]
-  //   });
-  // };
-
+ 
   const handleStatusChange = () => {
     const statuses = ['To do', 'In Progress', 'Done'];
     const currentIndex = statuses.indexOf(newTask.status);
@@ -53,12 +43,12 @@ const TaskApp = () => {
       status: statuses[nextIndex]
     });
   };
-
+ 
   const handleAddTask = () => {
     if (!showForm) {
       setShowForm(true);
       setAddButtonText('Close');
-      setFormClass('task-form-grid'); 
+      setFormClass('task-form-grid');
     } else {
       setShowForm(false);
       setAddButtonText('Add new task');
@@ -69,10 +59,10 @@ const TaskApp = () => {
         priority: 'Low',
         status: 'To do',
       });
-      setFormClass('task-form'); 
+      setFormClass('task-form');
     }
   };
-
+ 
   const handleCreateTask = () => {
     if (validateTask()) {
       if (editingTask) {
@@ -91,7 +81,7 @@ const TaskApp = () => {
             setEditingTask(false);
             setShowForm(false);
             setAddButtonText('Add new task');
-            setFormClass('task-form'); 
+            setFormClass('task-form');
           })
           .catch(error => {
             console.error(error);
@@ -110,7 +100,7 @@ const TaskApp = () => {
             });
             setShowForm(false);
             setAddButtonText('Add new task');
-            setFormClass('task-form'); 
+            setFormClass('task-form');
           })
           .catch(error => {
             console.error(error);
@@ -120,11 +110,11 @@ const TaskApp = () => {
       alert('Please fill in all fields');
     }
   };
-
+ 
   const validateTask = () => {
     return Object.values(newTask).every((val) => val !== '');
   };
-
+ 
   const handleDeleteTask = (taskId) => {
     axios.delete(`http://localhost:8080/api/employees/${taskId}`)
       .then(response => {
@@ -135,20 +125,20 @@ const TaskApp = () => {
         console.error(error);
       });
   };
-
+ 
   const handleEditTask = (taskId) => {
     setEditingTask(true);
     const taskToEdit = tasks.find(task => task.id === taskId);
     setNewTask(taskToEdit);
     setShowForm(true);
     setAddButtonText('Close');
-    setFormClass('task-form-grid'); 
+    setFormClass('task-form-grid');
   };
-
+ 
   return (
     <div className="task-app">
       <h1>Tasks</h1>
-      <div className={formClass}> 
+      <div className={formClass}>
         {showForm && (
           <>
             <input
@@ -167,20 +157,20 @@ const TaskApp = () => {
               value={newTask.description}
               onChange={handleInputChange}
             ></textarea>
-            {/* <div className='flex1'>
-              <button className="task-button" onClick={handlePriorityChange}>{newTask.priority}</button>
-            </div> */}
-            <div className='flex1'>
-              <button className="task-button" onClick={handleStatusChange}>{newTask.status}</button>
-            </div>
-            <div className='flex1'>
+            <button className="task-button status-button" onClick={handleStatusChange}>
+              {newTask.status}
+            </button>
+            <div className="button-row">
+              <button className="task-button" onClick={handleAddTask}>Close</button>
               <button className="task-button" onClick={handleCreateTask}>{editingTask ? 'Update' : 'Create'}</button>
             </div>
           </>
         )}
-        <div className='flex1'>
-          <button className="task-button" onClick={handleAddTask}>{addButtonText}</button>
-        </div>
+        {!showForm && (
+          <div className="button-row">
+            <button className="task-button" onClick={handleAddTask}>{addButtonText}</button>
+          </div>
+        )}
       </div>
       <div>
         {tasks.map((task, index) => (
@@ -198,6 +188,5 @@ const TaskApp = () => {
     </div>
   );
 };
-
-export default TaskApp;
  
+export default TaskApp;

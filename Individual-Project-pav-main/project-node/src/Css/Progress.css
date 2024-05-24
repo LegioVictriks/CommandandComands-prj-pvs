@@ -3,89 +3,90 @@
   padding: 20px;
 }
 
-
-
 .view-buttons {
   margin-bottom: 10px;
+  margin-left: 15px;
+  display: flex;
 }
 
 .view-buttons button {
-  background-color: transparent;
+  background-color: #000000; /* одинаковый цвет для всех кнопок */
   border: none;
-  padding: 5px 10px;
+  padding: 10px 20px; /* увеличили размер кнопок */
   cursor: pointer;
+
+  transition: background-color 0.2s, color 0.2s;
+  color: #FFFFFF; /* цвет текста */
 }
 
 .view-buttons button.active {
-  background-color: rgb(172, 143, 192);
-
+  background-color: #3333339a; /* цвет активной кнопки */
 }
 
 .view-buttons button {
-  margin: 0 0px;
-  padding: 5px 10px;
-  border: none;
-  background-color: rgb(133, 29, 207);
-  color: #fff;
-  transition: background-color 0.2s;
+  margin: 0 1px;
+  border-radius: 2px;
 }
 
 .view-buttons button:hover {
-  background-color: rgb(217, 184, 241);
-  color: black;
+  background-color: #b1b0b0; /* цвет при наведении */
+  color: #000000;
 }
 
 .list-view-column {
   display: flex;
   gap: 10px;
 }
-.list-view{
+
+.list-view {
   gap: 10px;
 }
+
 .list-view-column div {
   display: flex;
   align-items: flex-start;
 }
-/* .list-view-column div p {
-  margin-right: 10px; 
-} */
-.obj-change{
+
+.obj-change {
   display: flex;
   flex-direction: column;
   align-items: center;
- 
 }
-.obj-change  p{
 
+.obj-change p {
   margin-bottom: 8px;
 }
+
 .grid-view-column {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
-.columns{
+
+.columns {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: auto;
 }
-.gridobj{
+
+.gridobj {
   display: grid;
-  grid-template-columns:auto;
+  grid-template-columns: auto;
   gap: 25px;
 }
 
-.details-link-nav{
+.details-link-nav {
   display: inline-block;
-    margin-bottom: 10px;
-    margin-top: 10px;
-    padding: 5px 10px;
-    border-radius: 3px;
-    text-decoration: none;
-    transition: background-color 0.2s;
-
-}
-.details-link-nav:hover{
-  background-color: #3C257C;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  padding: 30px 50px; /* увеличили размер кнопки */
+  border-radius: 10px; /* закругленные углы */
+  text-decoration: none;
+  transition: background-color 0.2s, color 0.2s;
+  background-color: #000000;
   color: #FFFFFF;
+}
+
+.details-link-nav:hover {
+  background-color: #333333;
 }

@@ -6,17 +6,18 @@
 }
 
 .calenadr {
-  background-color: #E4DBFE;
-  border: 2px solid #855BF9;
+  background-color: rgb(255, 255, 255);
+  border: 2px solid #000000;
   border-radius: 10px;
   padding: 20px;
+ 
 }
 
 .date,
 .time {
   font-size: 24px;
   font-weight: bold;
-  color: #855BF9;
+  color: #000000;
 }
 
 .dates {
@@ -29,16 +30,93 @@
   font-size: 16px;
   padding: 5px;
   text-align: center;
-  background-color: #E4DBFE;
-  color: #855BF9;
+  background-color: #ffffff;
+  color: #000000;
   border-radius: 5px;
+  margin-top: 2px;
 }
 
 .date-item.today {
   border: 2px solid red;
+  color: red;
 }
 
 .date-item.saturday,
 .date-item.sunday {
-  color: red;
+  color: rgb(201, 5, 5);
 }
+.form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 125px; 
+}
+
+.form-container form {
+  width: 12%; /* Ширина формы */
+}
+
+.form-container input {
+  width: 100%; /* Ширина инпутов */
+  margin-bottom: 10px; /* Отступ между инпутами */
+}
+
+.form-container button {
+  width: 100%; /* Ширина кнопки */
+
+}
+
+
+
+@media (min-width: 100px) and (max-width: 1024px) {
+  .calenadr {
+    background-color: rgb(255, 255, 255);
+    border: 2px solid #000000;
+    border-radius: 10px;
+    padding: 20px;
+  }
+
+  .form-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: auto; /* Отмена фиксированной высоты */
+    margin-top: 20px; /* Отступ от верха */
+    margin-bottom: 20px; /* Отступ от нижней части */
+  }
+
+  .form-container form {
+    width: 70%; /* Увеличиваем ширину формы */
+  }
+
+  .form-container input {
+    width: 100%; /* Ширина инпутов */
+    margin-bottom: 10px; /* Отступ между инпутами */
+    margin-right: 10px; /* Отступ справа */
+  }
+
+  .form-container button {
+    width: 102%; /* Ширина кнопки */
+    font-size: smaller; /* Уменьшаем размер шрифта */
+  }
+
+  .auth-buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .auth-buttons button {
+   
+    margin-bottom: 10px; /* Отступ между кнопками */
+  }
+}
+
+
+
+
+
+

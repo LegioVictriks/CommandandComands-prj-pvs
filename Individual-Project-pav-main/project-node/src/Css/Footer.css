@@ -1,14 +1,120 @@
-.footer {
-    padding: 1px;
-    background-color: #AD92FB;
-    color: #fff;
-    text-align: center;
-    padding: 1px;
+.gogo {
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Создаем три одинаковых столбца */
+  gap: 10px; /* Промежуток между элементами */
+  padding-bottom: 40px;
+  background: url('../assets/background.png')
+}
+
+.more {
+  color: #FFF;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-size: 36.4px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 42px; /* 115.385% */
+  margin-bottom: 50px;
+  margin-left: 20px;
+  padding-left: 40px;
+  margin-top: 20px;
+
+}
+
+li {
+  color: #FFF;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-size: 16.8px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20.8px; /* 123.81% */
+  text-decoration-line: underline;
+  list-style: none;
+  margin-bottom: 50px;
+  opacity: 85%;
+}
+
+ul {
+  grid-row: 1;
+}
+
+a {
+  color: #FFF;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-size: 16.8px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20.8px; /* 123.81% */
+  text-decoration-line: underline;
+  list-style: none;
+}
+
+.gs {
+  color: #FFF;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-size: 36.4px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 42px; /* 115.385% */
+  margin-bottom: 54px;
+  margin-top: 20px;
+}
+
+.buttonh {
+  border-radius: 100px;
+  background: #FFFEFE;
+  display: flex;
+  width: 162.43px;
+  height: 34px;
+  padding: 10px 35px;
+  justify-content: center;
+  align-items: center;
+  color: #000;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-size: 17.8px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 14px; /* 78.652% */
+  border-style: none;
+  margin-bottom: 10px;
+  margin-top: 30px;
+}
+
+.most {
+  color: #FFF;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-size: 16.8px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20.8px; /* 123.81% */
+  width: 200px;
+  opacity: 85%;
+}
+
+.clonus {
+  column-count: 2; /* Распределяем элементы на два столбца */
+  column-gap: 20px; /* Промежуток между столбцами */
+  margin-left: 20px;
+  padding-left: 40px;
+}
+
+.gridthird {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@media (min-width: 100px) and (max-width: 1024px)  {
+  .gridfirst {
+      display: flex;
+      flex-direction: column;
   }
-  .footer img {
-    filter: invert(1); 
+  .gogo {
+      display: flex;
+      flex-direction: column;
   }
-.footer ,h1 ,p {
-margin-top: 15px;
-margin-bottom: 2px;
+  .more {
+      padding: 0;
+      text-align: center;
   }
+}
