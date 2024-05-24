@@ -19,7 +19,7 @@ const TaskApp = () => {
   const [formClass, setFormClass] = useState('task-form');
  
   useEffect(() => {
-    axios.get('http://localhost:8080/api/employees')
+    axios.get('http://localhost:8080/api/useremail/employees')
       .then((response) => {
         console.log(response.data);
         setTasks(response.data);
@@ -66,7 +66,7 @@ const TaskApp = () => {
   const handleCreateTask = () => {
     if (validateTask()) {
       if (editingTask) {
-        axios.put(`http://localhost:8080/api/employees/${newTask.id}`, newTask)
+        axios.put(`http://localhost:8080/api/useremail/employees/${newTask.id}`, newTask)
           .then(response => {
             const updatedTasks = tasks.map(task =>
               task.id === newTask.id ? { ...newTask, lastUpdated: new Date().toISOString() } : task
@@ -87,7 +87,7 @@ const TaskApp = () => {
             console.error(error);
           });
       } else {
-        axios.post('http://localhost:8080/api/employees', newTask)
+        axios.post('http://localhost:8080/api/useremail/employees', newTask)
           .then(response => {
             const updatedTask = response.data;
             const updatedTasks = [...tasks, updatedTask];
@@ -116,7 +116,7 @@ const TaskApp = () => {
   };
  
   const handleDeleteTask = (taskId) => {
-    axios.delete(`http://localhost:8080/api/employees/${taskId}`)
+    axios.delete(`http://localhost:8080/api/useremail/employees/${taskId}`)
       .then(response => {
         const updatedTasks = tasks.filter(task => task.id !== taskId);
         setTasks(updatedTasks);
